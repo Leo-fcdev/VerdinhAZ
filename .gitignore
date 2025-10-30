@@ -3,3 +3,6 @@ node_modules
 .env
 
 /generated/prisma
+
+# Banco de dados local do Prisma
+prisma/dev.db
