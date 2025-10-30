@@ -1,0 +1,157 @@
+/* Container principal da página */
+.pageContainer {
+  display: flex;
+  flex-direction: column; /* Organiza os filhos em coluna */
+  min-height: 100vh; /* Altura mínima de 100% da tela */
+  background-color: #fff;
+}
+
+/* --- Estilos do Cabeçalho (Navbar) --- */
+.navbar {
+  width: 100%;
+  background-color: #008f39; /* Fundo verde */
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between; /* Empurra logo e links para lados opostos */
+  align-items: center; /* Alinha verticalmente */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  box-sizing: border-box;
+}
+
+/* Caixa da logo */
+.navLogo {
+  display: flex;
+  align-items: center;
+}
+
+/* Caixa dos links */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Espaço entre os links */
+}
+
+/* Estilo dos links (texto branco) */
+.navLinks a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* --- Estilos do Conteúdo (Hero) --- */
+
+/* O card principal (que segura o banner) */
+.heroContainer {
+  border-radius: 12px;
+  margin: 2rem; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  align-self: center; /* Centraliza o card na página */
+  overflow: hidden; 
+  position: relative; /* FUNDAMENTAL para o ::before funcionar */
+  
+  min-height: 550px; /* Altura mínima do banner */
+
+  /* Define a imagem de fundo */
+  background-image: url('/BANNER.png');
+  background-size: cover; /* Faz a imagem cobrir todo o espaço */
+  background-position: top center; /* Alinha a imagem pelo topo */
+  background-repeat: no-repeat;
+  
+  /* Alinha o bloco de texto à direita */
+  display: flex;
+  justify-content: flex-end; 
+}
+
+/* --- CAMADA ESCURA AGORA NO CONTAINER INTEIRO --- */
+.heroContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Preto com 50% de opacidade */
+  z-index: 1; /* Fica ABAIXO do texto, mas ACIMA da imagem */
+  border-radius: 12px; /* Garante que a camada escura tenha as bordas arredondadas */
+}
+
+/* O bloco que segura o texto */
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+  padding: 4rem; 
+  position: relative; 
+  z-index: 2; /* Texto na frente da camada escura */
+  
+  /* Define a largura do bloco de texto (60% do card) */
+  flex-basis: 60%; 
+  align-items: flex-start; /* Alinha o conteúdo à esquerda (dentro do bloco) */
+  text-align: left;
+  
+  /* IMPORTANTE: Removemos o ::before daqui */
+  /* Isso era o que fazia a camada escura estar só na direita */
+}
+
+/* Título (texto branco) */
+.heroText h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  color: #ffffff; 
+  margin: 0;
+}
+
+/* Parágrafo (texto branco) */
+.heroText p {
+  font-size: 1.1rem;
+  color: #f0f0f0; 
+  margin: 0;
+}
+
+/* Botão "SAIBA MAIS" */
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: #008f39;
+  color: white;
+  border: none;
+  border-radius: 50px; 
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+  /* Alinha o botão no canto inferior direito do bloco de texto */
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+.searchButton:hover { 
+  background-color: #00732e; 
+}
+
+/* Ícone dentro do botão */
+.buttonIcon { 
+  border-radius: 50%; 
+}
+
+/* --- Estilos do Rodapé/Banner --- */
+.footerBanner {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-top: 1px solid #eee;
+  margin-top: auto; /* Empurra o rodapé para o fim da página */
+}
+
+.footerBanner p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #444;
+  font-weight: 500;
+}

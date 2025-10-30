@@ -1,78 +1,59 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Head from 'next/head';
+import Image from 'next/image';
+// Importa o arquivo de estilos (CSS Module)
+import styles from '../styles/Home.module.css'; 
 
 export default function Home() {
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black`}
-    >
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the index.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    // Container principal da página
+    <div className={styles.pageContainer}> 
+      <Head>
+        {/* Define o título que aparece na aba do navegador */}
+        <title>VerdinhAZ - Transformando Vidas</title>
+      </Head>
+
+      {/* Cabeçalho verde do site */}
+      <header className={styles.navbar}>
+        {/* Caixa para a logo */}
+        <div className={styles.navLogo}>
+          <Image src="/logo.png" width={225} height={60} alt="Logo VerdinhAZ" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        {/* Links de navegação */}
+        <nav className={styles.navLinks}>
+          <a href="#">Quem somos</a>
+          <a href="#">Cadastrar Clínica</a>
+        </nav>
+      </header>
+      
+      {/* Conteúdo principal (o banner cinza) */}
+      <main className={styles.heroContainer}>
+
+        {/* Bloco de texto que fica sobre a imagem de fundo */}
+        <div className={styles.heroText}>
+          <h1>TRANSFORMANDO VIDAS ATRAVÉS DO CONHECIMENTO.</h1>
+          <p>
+            Esclarecemos o uso terapêutico do canabidiol.
+            Nosso propósito é informar, acolher e transformar.
+          </p>
+
+          {/* Botão "Saiba Mais" */}
+          <button className={styles.searchButton}>
+            <span>SAIBA MAIS</span>
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/celular.png" // Imagem do ícone
+              alt="Ícone de perfil"
+              width={50}
+              height={50}
+              className={styles.buttonIcon}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs/pages/getting-started?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </button>
         </div>
       </main>
+
+      {/* Rodapé da página */}
+      <footer className={styles.footerBanner}>
+        <p>Converse, tire suas dúvidas e receba ajuda com profissionais de verdade!</p>
+      </footer>
     </div>
   );
 }
