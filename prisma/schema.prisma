@@ -1,6 +1,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../verdinhaz/node_modules/.prisma/client"
 
 }
 
