@@ -12,7 +12,7 @@ Aqui estão os designs que guiam o nosso desenvolvimento:
 
 | Home Page | Página de Busca |
 | :---: | :---: |
-| ![Home Page](URL_DA_SUA_IMAGEM_HOME_AQUI) | ![Página de Busca](URL_DA_SUA_IMAGEM_BUSCA_AQUI) |
+| ![Home Page](./assets/home%20page.png) | ![Página de Busca](./assets/buscar%20medico.png) |
 
 *(Nota: Para as imagens aparecerem, você pode subi-las no próprio GitHub e colar o link aqui).*
 
