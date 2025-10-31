@@ -25,7 +25,7 @@ async function main() {
             email:'bruno.mendes@clinicardador.com',
             crm: '67890-RJ',
             especialidade: 'Clínica da Dor e Terapia Canabinoide',
-            localizacao: 'Avenida das Américas, nº 500, Bloco 3 - Barra da Tijuca, Rio de Janeiro - RJ',
+            localizacao: 'Rio de Janeiro - RJ',
             biografia: 'Médico especialista no tratamento da dor crônica, fibromialgia e cuidados paliativos. Utiliza a terapia canabinoide como ferramenta para melhorar a qualidade de vida.',
             fotoUrl: '/images/medico2.jpg',
         },
@@ -37,7 +37,7 @@ async function main() {
       email: 'alice.nogueira@clinicaintegrativa.com',
       crm: '13579-SP',
       especialidade: 'Neurologia e Medicina Canabinoide',
-      localizacao: 'Rua Apinajés, nº 1100, Sala 72 - Perdizes, São Paulo - SP',
+      localizacao: 'São Paulo - SP',
       biografia:
         'Neurologista com mais de 10 anos de experiência, pós-graduada em tratamentos com cannabis medicinal para doenças neurodegenerativas e dor crônica.',
       fotoUrl: '/images/medico3.jpg', // <-- Verifique se o nome bate
