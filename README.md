@@ -74,8 +74,7 @@ Este projeto utiliza um "stack" moderno focado em JavaScript e agilidade:
 
 1.  **Clone o Repositório:**
     ```bash
-    git clone [URL_DO_SEU_GIT]
-    cd [NOME_DA_PASTA_MAIN]
+    git clone https://github.com/Leo-fcdev/VerdinhAZ.git
     ```
 
 2.  **Instale o Prisma (na pasta `main`):**
