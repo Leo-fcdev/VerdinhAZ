@@ -59,7 +59,7 @@ Este projeto utiliza um "stack" moderno focado em JavaScript e agilidade:
 * **Front-end:**
     * 🔲 **Página de Notícias:** Construir a nova tela (`/noticias`).
     * 🔲 **Navegação:** Conectar os links da Home e da página de Notícias.
-    * x00f0 * **Página de Perfil:** Construir a tela `pages/medico/[id].js`.
+    * 🔲 **Página de Perfil:** Construir a tela `pages/medico/[id].js`.
     * 🔲 **Formulário:** Adicionar o formulário de contato na página de perfil e conectá-lo à API de Contato.
     * 🔲 **Filtros:** Conectar a barra de "Buscar" e o botão "Filtro" na página de busca.
 
