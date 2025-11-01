@@ -14,8 +14,6 @@ Aqui estão os designs que guiam o nosso desenvolvimento:
 | :---: | :---: |
 | ![Home Page](./assets/home%20page.png) | ![Página de Busca](./assets/buscar%20medico.png) |
 
-*(Nota: Para as imagens aparecerem, você pode subi-las no próprio GitHub e colar o link aqui).*
-
 ---
 
 ## 2. Tecnologias Utilizadas
@@ -42,6 +40,7 @@ Este projeto utiliza um "stack" moderno focado em JavaScript e agilidade:
 * **✅ Back-end:**
     * A API de busca (`/api/medicos/buscar`) está **funcionando** e retornando os dados dos médicos do banco.
     * A conexão entre o app (pasta `verdinhaz`) e o banco (pasta `main/prisma`) está 100% configurada.
+    * A API de Perfil (`GET /api/medicos/[id]`) está **funcionando** e pronta para o front-end (retorna um médico específico).
 
 * **✅ Front-end:**
     * A **Home Page** (`/`) está visualmente construída.
@@ -53,12 +52,13 @@ Este projeto utiliza um "stack" moderno focado em JavaScript e agilidade:
 
 * **Back-end:**
     * 🔲 **API de Contato:** Criar o endpoint `POST /api/contato` para salvar a mensagem do paciente no banco.
-    * 🔲 **API de Perfil:** Criar o endpoint `GET /api/medicos/[id]` para buscar os dados de um único médico.
+    * 🔲 **API de Cadastro:** Criar o endpoint `POST /api/medicos/cadastrar`. (Recebe o formulário "Cadastrar Clínica", incluindo o **upload da foto**, e salva na tabela `Medico`).
     * 🔲 **API de Filtro:** Melhorar a API `/api/medicos/buscar` para aceitar filtros de busca e localização.
 
 * **Front-end:**
     * 🔲 **Página de Notícias:** Construir a nova tela (`/noticias`).
     * 🔲 **Navegação:** Conectar os links da Home e da página de Notícias.
+    * 🔲 **Página de Cadastro:** Construir a tela `pages/cadastrar-clinica.js` (destino do link do header) e conectá-la à `POST /api/medicos/cadastrar`.
     * 🔲 **Página de Perfil:** Construir a tela `pages/medico/[id].js`.
     * 🔲 **Formulário:** Adicionar o formulário de contato na página de perfil e conectá-lo à API de Contato.
     * 🔲 **Filtros:** Conectar a barra de "Buscar" e o botão "Filtro" na página de busca.
