@@ -7,6 +7,11 @@ async function main() {
     await prisma.mensagem.deleteMany();
     await prisma.medico.deleteMany();
 
+    console.log('Banco de dados resatado com sucesso!')
+}
+    /*
+CRIAÇÃO PARA PRIMEIROS TESTE DE BANCO
+
     const medico1 = await prisma.medico.create({
         data : {
             nome: 'Dr. Sidarta Machado',
@@ -47,6 +52,7 @@ async function main() {
   console.log('Médicos criados:' , medico1, medico2, medico3);
   console.log('Seed finalizado com sucesso!')
 }
+*/
 
 main()
     .catch((e) =>{
