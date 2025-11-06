@@ -1,0 +1,96 @@
+.containerGeral {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  font-family: Arial, sans-serif;
+}
+
+.containerFormulario {
+  display: flex;
+  background-color: var(--verde-principal);
+  border-radius: 20px;
+  padding: 40px;
+  width: 900px;
+  max-width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.logoTopo {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+}
+
+.logoTopo img {
+  width: 200px;
+}
+
+.formImagem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 20px;
+}
+
+.formImagem img {
+  width: 100%;
+  max-width: 350px;
+  object-fit: cover;
+}
+
+.formInputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.input {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.ajudaLink {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ajudaLink:hover {
+  text-decoration: underline;
+}
+
+.btnProximo {
+  background-color: var(--verde-escuro);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btnProximo:hover {
+  background-color: #104d2a;
+}
