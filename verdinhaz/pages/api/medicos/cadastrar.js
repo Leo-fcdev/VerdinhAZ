@@ -1,9 +1,8 @@
-
-
 import prisma from '@/lib/prisma';
 import { IncomingForm } from 'formidable';
 import fs from 'fs'; 
 import path from 'path';
+import bcrypt from 'bcryptjs'
 
 export const config = {
   api: {
@@ -19,8 +18,6 @@ export default async function handler(req, res) {
   }
 
   const tmpDir = path.join(process.cwd(), 'public', 'uploads', 'tmp');
-  
-  
   const uploadDir = path.join(process.cwd(), 'public', 'uploads');
 
   try {
@@ -35,8 +32,6 @@ export default async function handler(req, res) {
         keepExtensions: true,
       });
       
-      
-      
       form.parse(req, (err, fields, files) => {
         
         if (err) {
@@ -46,25 +41,26 @@ export default async function handler(req, res) {
         resolve({ fields, files });
       });
     });
-
     
-    const { nome, email, crm, especialidade, localizacao, biografia } = data.fields;
+    const { nome, email, crm, especialidade, localizacao, biografia, senha } = data.fields;
     const fotoFile = data.files.foto[0];
 
     if (!fotoFile) {
       return res.status(400).json({ error: 'Nenhum arquivo de foto enviado.' });
     }
+    if (!senha || !senha[0]) return res.status(400).json({ error: 'Senha obrigatoria'});
 
-    
     const oldPath = fotoFile.filepath; 
-    
-    
+      
     const newFileName = `${Date.now()}_${fotoFile.originalFilename}`;
     const newPath = path.join(uploadDir, newFileName);
     
     fs.renameSync(oldPath, newPath); 
 
     const fotoUrl = `/uploads/${newFileName}`;
+
+    const hashedPassword = await bcrypt.hash(senha[0], 10);
+
 
     const novoMedico = await prisma.medico.create({
       data: {
@@ -75,6 +71,7 @@ export default async function handler(req, res) {
         localizacao: localizacao[0],
         biografia: biografia[0],
         fotoUrl: fotoUrl,
+        senha: hashedPassword,
       },
     });
 

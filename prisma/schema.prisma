@@ -19,6 +19,7 @@ model Medico {
   localizacao   String
   biografia     String 
   fotoUrl       String
+  senha         String
 
 //Relação
   mensagens Mensagem[]

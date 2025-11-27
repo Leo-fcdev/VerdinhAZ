@@ -35,12 +35,13 @@ Este projeto utiliza um "stack" moderno focado em JavaScript e agilidade:
 
 * **✅ Banco de Dados:**
     * O schema (`Medico`, `Mensagem`) está 100% definido no `prisma/schema.prisma`.
-    * O banco `dev.db` está populado com médicos "fake" usando o `prisma/seed.js`.
+    * O banco `dev.db` está populado com médicos "fake" usando o `prisma/seed.js` (ou resetado para testes reais).
 
-* **✅ Back-end:**
-    * A API de busca (`/api/medicos/buscar`) está **funcionando** e retornando os dados dos médicos do banco.
-    * A conexão entre o app (pasta `verdinhaz`) e o banco (pasta `main/prisma`) está 100% configurada.
-    * A API de Perfil (`GET /api/medicos/[id]`) está **funcionando** e pronta para o front-end (retorna um médico específico).
+* **✅ Back-end (APIs):**
+    * `GET /api/medicos/buscar`: **Pronta.** Retorna a lista de médicos.
+    * `GET /api/medicos/[id]`: **Pronta.** Retorna o perfil de um único médico.
+    * `POST /api/medicos/cadastrar`: **Pronta.** Cadastra novos médicos com **upload de foto** (salva em `/public/uploads`).
+    * `POST /api/contato`: **Pronta.** Recebe mensagens dos pacientes e salva no banco.
 
 * **✅ Front-end:**
     * A **Home Page** (`/`) está visualmente construída.
@@ -51,17 +52,15 @@ Este projeto utiliza um "stack" moderno focado em JavaScript e agilidade:
 ## 4. Próximos Passos (O que Falta Fazer)
 
 * **Back-end:**
-    * 🔲 **API de Contato:** Criar o endpoint `POST /api/contato` para salvar a mensagem do paciente no banco.
-    * 🔲 **API de Cadastro:** Criar o endpoint `POST /api/medicos/cadastrar`. (Recebe o formulário "Cadastrar Clínica", incluindo o **upload da foto**, e salva na tabela `Medico`).
-    * 🔲 **API de Filtro:** Melhorar a API `/api/medicos/buscar` para aceitar filtros de busca e localização.
+    * 🔲 **API de Filtro:** Melhorar a API `/api/medicos/buscar` para aceitar filtros de busca (nome) e localização.
 
 * **Front-end:**
     * 🔲 **Página de Notícias:** Construir a nova tela (`/noticias`).
-    * 🔲 **Navegação:** Conectar os links da Home e da página de Notícias.
-    * 🔲 **Página de Cadastro:** Construir a tela `pages/cadastrar-clinica.js` (destino do link do header) e conectá-la à `POST /api/medicos/cadastrar`.
-    * 🔲 **Página de Perfil:** Construir a tela `pages/medico/[id].js`.
-    * 🔲 **Formulário:** Adicionar o formulário de contato na página de perfil e conectá-lo à API de Contato.
-    * 🔲 **Filtros:** Conectar a barra de "Buscar" e o botão "Filtro" na página de busca.
+    * 🔲 **Navegação:** Conectar os links da Home, da página de Notícias e do botão "Saiba Mais".
+    * 🔲 **Página de Cadastro:** Construir a tela `pages/cadastrar-clinica.js` (com formulário Multipart) e conectá-la à `POST /api/medicos/cadastrar`.
+    * 🔲 **Página de Perfil:** Construir a tela `pages/medico/[id].js` (usando a API de Perfil).
+    * 🔲 **Formulário de Contato:** Adicionar o formulário na página de perfil e conectá-lo à `POST /api/contato`.
+    * 🔲 **Filtros:** Conectar a barra de "Buscar" e o botão "Filtro" na página de busca à API.
 
 * **Apresentação:**
     * 🔲 **Página Admin:** Criar uma página `/admin/mensagens` para provar que o formulário de contato salvou os dados.
@@ -74,7 +73,7 @@ Este projeto utiliza um "stack" moderno focado em JavaScript e agilidade:
 
 1.  **Clone o Repositório:**
     ```bash
-    git clone https://github.com/Leo-fcdev/VerdinhAZ.git
+    git clone [https://github.com/Leo-fcdev/VerdinhAZ.git](https://github.com/Leo-fcdev/VerdinhAZ.git)
     ```
 
 2.  **Instale o Prisma (na pasta `main`):**
@@ -90,7 +89,7 @@ Este projeto utiliza um "stack" moderno focado em JavaScript e agilidade:
     ```
 
 4.  **Popule o Banco (na pasta `main`):**
-    *Isto roda o `seed.js` e cadastra os médicos "fake".*
+    *Isto roda o `seed.js` para limpar o banco (ou popular com dados fake, dependendo da configuração).*
     ```bash
     npx prisma db seed
     ```
