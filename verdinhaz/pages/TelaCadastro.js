@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/TelaCadastro.module.css';
 
-const logoPath = '/logo.png';
-const mulherPath = '/mulher-cadastro.png';
+const LOGO_PATH = '/logo.png';
+const MULHER_PATH = '/mulhercaneca.png';
 
 export default function TelaCadastro() {
   const router = useRouter();
 
-  // state do form
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -30,7 +29,6 @@ export default function TelaCadastro() {
     }
 
     try {
-      // monta o formData pro upload
       const formData = new FormData();
       formData.append('nome', nome);
       formData.append('email', email);
@@ -41,7 +39,6 @@ export default function TelaCadastro() {
       formData.append('biografia', biografia);
       formData.append('foto', foto);
 
-      // envia pra api
       const response = await fetch('/api/medicos/cadastrar', {
         method: 'POST',
         body: formData,
@@ -69,11 +66,11 @@ export default function TelaCadastro() {
       <div className={styles.containerFormulario}>
 
         <div className={styles.logoTopo}>
-          <img src={logoPath} alt="Logo VerdinhAZ" />
+          <img src={LOGO_PATH} alt="Logo VerdinhAZ" />
         </div>
 
         <div className={styles.formImagem}>
-          <img src={mulherPath} alt="Mulher sorrindo segurando uma caneca" />
+          <img src={MULHER_PATH} alt="Mulher sorrindo segurando uma caneca" />
         </div>
 
         <form className={styles.formInputs} onSubmit={handleSubmit}>

@@ -16,9 +16,12 @@ export default function Home() {
         </div>
         
         <nav className={styles.navLinks}>
-          <Link href="#">Quem somos</Link>
           
+          <Link href="/QuemSomos">
+            Quem somos
+          </Link>
           
+         
           <Link href="/TelaCadastro">
             Cadastrar Clínica
           </Link>
