@@ -8,11 +8,20 @@ export async function verificarSenha(senhaDigitada, senhaHashBanco) {
 }
 
 export function criarToken(medico) {
-    const paylord = {
-        id: medico.id,
-        email: medico.email,
-        nome:medico.nome
-    };
+  return jwt.sign({ id: medico.id, email: medico.email }, JWT_SECRET, { expiresIn: '7d' });
+}
 
-    return jwt.sign(paylord, JWT_SECRET, { expiresIn: '7d'})
+export function lerToken(req) {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) return null;
+
+    const token = authHeader.split(' ')[1];
+
+    try {
+        const dados = jwt.verify(token, JWT_SECRET);
+        return dados;
+    } catch (error) {
+        return null;
+    }
 }
