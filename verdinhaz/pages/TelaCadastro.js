@@ -1,32 +1,69 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/TelaCadastro.module.css';
 
 const logoPath = '/logo.png';
 const mulherPath = '/mulher-cadastro.png';
 
 export default function TelaCadastro() {
-  
+  const router = useRouter();
+
+  // state do form
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   const [crm, setCrm] = useState('');
   const [localizacao, setLocalizacao] = useState('');
   const [especialidade, setEspecialidade] = useState('');
+  const [biografia, setBiografia] = useState('');
+  const [foto, setFoto] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); 
-    
-    console.log('Dados do formulário:');
-    console.log({
-      nome,
-      email,
-      crm,
-      localizacao,
-      especialidade,
-    });
-    
-    alert('Formulário pronto para enviar! Verifique o console (F12).');
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    if (!foto) {
+      alert('Por favor, selecione uma foto de perfil.');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // monta o formData pro upload
+      const formData = new FormData();
+      formData.append('nome', nome);
+      formData.append('email', email);
+      formData.append('senha', senha);
+      formData.append('crm', crm);
+      formData.append('localizacao', localizacao);
+      formData.append('especialidade', especialidade);
+      formData.append('biografia', biografia);
+      formData.append('foto', foto);
+
+      // envia pra api
+      const response = await fetch('/api/medicos/cadastrar', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Cadastro realizado com sucesso!');
+        router.push('/');
+      } else {
+        alert(`Erro: ${data.error || 'Falha ao cadastrar'}`);
+      }
+
+    } catch (error) {
+      console.error('Erro no cadastro:', error);
+      alert('Erro de conexão. Tente novamente.');
+    } finally {
+      setLoading(false);
+    }
   };
-  
+
   return (
     <div className={styles.containerGeral}>
       <div className={styles.containerFormulario}>
@@ -47,6 +84,7 @@ export default function TelaCadastro() {
             value={nome}
             onChange={(e) => setNome(e.target.value)}
             className={styles.input}
+            required
           />
 
           <input
@@ -55,6 +93,17 @@ export default function TelaCadastro() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={styles.input}
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Crie uma senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            className={styles.input}
+            required
+            minLength={6}
           />
 
           <input
@@ -63,11 +112,12 @@ export default function TelaCadastro() {
             value={crm}
             onChange={(e) => setCrm(e.target.value)}
             className={styles.input}
+            required
           />
 
           <input
             type="text"
-            placeholder="Insira sua localização"
+            placeholder="Insira sua localização (Ex: São Paulo - SP)"
             value={localizacao}
             onChange={(e) => setLocalizacao(e.target.value)}
             className={styles.input}
@@ -79,14 +129,43 @@ export default function TelaCadastro() {
             value={especialidade}
             onChange={(e) => setEspecialidade(e.target.value)}
             className={styles.input}
+            required
           />
+          
+          <input
+            type="text"
+            placeholder="Breve biografia"
+            value={biografia}
+            onChange={(e) => setBiografia(e.target.value)}
+            className={styles.input}
+          />
+
+          <div className={styles.uploadContainer}>
+            <label className={`${styles.customFileUpload} ${foto ? styles.fileSelected : ''}`}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setFoto(e.target.files[0])}
+                required
+              />
+              <span className={styles.uploadIcon}>{foto ? '✅' : '📷'}</span>
+              <span>
+                {foto ? `Arquivo: ${foto.name}` : 'Clique para enviar sua foto de perfil'}
+              </span>
+            </label>
+          </div>
 
           <a href="#" className={styles.ajudaLink}>
             Precisa de ajuda?
           </a>
 
-          <button type="submit" className={styles.btnProximo}>
-            Próximo
+          <button 
+            type="submit" 
+            className={styles.btnProximo}
+            disabled={loading}
+            style={{ opacity: loading ? 0.7 : 1 }}
+          >
+            {loading ? 'Cadastrando...' : 'Cadastrar'}
           </button>
         </form>
 

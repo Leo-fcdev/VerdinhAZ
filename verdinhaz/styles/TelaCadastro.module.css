@@ -94,3 +94,42 @@
 .btnProximo:hover {
   background-color: #104d2a;
 }
+
+.uploadContainer {
+  margin-bottom: 20px;
+}
+
+.customFileUpload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 15px 25px;
+  cursor: pointer;
+  color: #555;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 2px dashed #ccc;
+}
+
+.customFileUpload:hover {
+  background-color: #f9f9f9;
+  border-color: #999;
+}
+
+.customFileUpload input[type="file"] {
+  display: none;
+}
+
+.uploadIcon {
+  font-size: 1.3rem;
+}
+
+.fileSelected {
+  background-color: #e8f5e9;
+  border: 2px solid var(--verde-escuro);
+  color: var(--verde-escuro);
+}

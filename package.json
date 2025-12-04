@@ -4,7 +4,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",
-    "jsonwebtoken": "^9.1.2",
+    "jsonwebtoken": "^9.0.2",
     "bcryptjs": "^2.4.3"
   },
   "scripts": {
