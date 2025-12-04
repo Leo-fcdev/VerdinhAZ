@@ -23,6 +23,7 @@ model Medico {
 
 //Relação
   mensagens Mensagem[]
+  publicacoes Publicacao[]
 }
 
 model Mensagem{
@@ -35,4 +36,16 @@ model Mensagem{
 //Relação
   medicoId Int
   medico   Medico @relation(fields: [medicoId], references: [id])
+}
+
+model Publicacao {
+  id        Int      @id @default(autoincrement())
+  titulo    String
+  conteudo  String   
+  imagemUrl String?  
+  criadoEm  DateTime @default(now())
+
+  // Relação: Cada post pertence a um médico
+  medicoId  Int
+  medico    Medico   @relation(fields: [medicoId], references: [id])
 }
