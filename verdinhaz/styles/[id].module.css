@@ -1,0 +1,282 @@
+.container {
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backLink {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 20px;
+}
+
+.backLink a {
+  color: #008f39;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Card do Perfil */
+.profileCard {
+  background: white;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .profileCard {
+    flex-direction: row;
+  }
+}
+
+/* Coluna Esquerda (Foto) */
+.leftColumn {
+  background-color: #e8f5e9;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #eee;
+}
+
+.avatarWrapper {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  border: 5px solid white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.contactBtn {
+  background-color: #008f39;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 143, 57, 0.3);
+}
+
+.contactBtn:hover {
+  background-color: #00702c;
+  transform: translateY(-2px);
+}
+
+/* Coluna Direita (Infos) */
+.rightColumn {
+  padding: 40px;
+  flex: 1;
+}
+
+.doctorName {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.location {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #555;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+}
+
+.infoBlock {
+  margin-bottom: 20px;
+}
+
+.infoBlock h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.infoBlock p {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.bio {
+  line-height: 1.6;
+  color: #555;
+  font-weight: 400 !important;
+}
+
+/* --- MODAL --- */
+.modalOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+}
+
+.modalCard {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 20px;
+  /* Removi o padding daqui para controlar melhor dentro */
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh; /* Limita a altura se a tela for pequena */
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Botão de fechar */
+.closeBtn {
+  /* Agora é um SVG dentro do header, estilo controlado lá */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modalHeader {
+  background-color: #00AE4E;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.modalAvatar {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.5);
+}
+
+.modalLabel {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.modalDoctorName {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 700;
+}
+
+.modalBody {
+  padding: 30px;
+  overflow-y: auto; /* Permite rolar se o form for grande */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaço maior entre os campos */
+}
+
+/* Estilo dos Labels (CORRIGIDO PARA FICAR VISÍVEL) */
+.label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333333; /* Cor escura para contraste no fundo branco */
+  margin-bottom: 8px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout lado a lado para data e telefone */
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.row .inputGroup {
+  flex: 1;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  color: #333; /* Texto digitado escuro */
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: #00AE4E;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 174, 78, 0.1);
+}
+
+.textarea {
+  height: 120px;
+  resize: none;
+}
+
+.submitBtn {
+  background-color: #00AE4E;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 174, 78, 0.2);
+}
+
+.submitBtn:hover {
+  background-color: #008f39;
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
