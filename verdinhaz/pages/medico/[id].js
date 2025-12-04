@@ -39,10 +39,10 @@ export default function PerfilPublico({ medico }) {
       </Head>
 
       {/* --- BANNER PRINCIPAL --- */}
-      {/* Alterado: Fundo verde e Logo */}
+      {/* */}
       <div className="relative h-64 w-full bg-[#1e8a4b] overflow-hidden flex items-center justify-center">
         
-        {/* Logo Centralizada (Estilo marca d'água ou destaque) */}
+        {/* Logo Centralizada */}
         <div className="relative w-full h-full p-10">
             <Image 
             src="/logo.png" 
@@ -59,7 +59,7 @@ export default function PerfilPublico({ medico }) {
       {/* --- CONTEÚDO DO PERFIL --- */}
       <div className="max-w-5xl mx-auto px-6 mb-20">
         
-        {/* Cabeçalho do Perfil (Foto sobreposta + Dados) */}
+        {/* Cabeçalho do Perfil  */}
         <div className="flex flex-col md:flex-row items-start md:items-end -mt-16 mb-8 relative z-10">
           
           {/* Foto Circular */}
@@ -92,7 +92,7 @@ export default function PerfilPublico({ medico }) {
           </div>
         </div>
 
-        {/* --- ABAS (Mantidas para estrutura futura) --- */}
+        {/* --- ABAS  --- */}
         <div className="border-b border-gray-200 mb-8">
           <nav className="flex space-x-8">
             <button className="border-b-2 border-[#34B755] pb-4 px-1 text-sm font-bold text-gray-900">
@@ -107,7 +107,7 @@ export default function PerfilPublico({ medico }) {
           </nav>
         </div>
 
-        {/* --- CONTEÚDO (Feed removido) --- */}
+        {/* --- CONTEÚDO --- */}
         <div className="py-10 text-center bg-gray-50 rounded-lg border border-dashed border-gray-300">
             <p className="text-gray-500 font-medium">Nenhuma publicação recente.</p>
             <p className="text-sm text-gray-400 mt-1">As novidades do especialista aparecerão aqui em breve.</p>
