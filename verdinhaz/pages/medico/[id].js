@@ -30,7 +30,12 @@ const IconChat = () => (
 );
 
 function ModalContato({ isOpen, onClose, medico }) {
-  const [form, setForm] = useState({ nome: '', telefone: '', mensagem: '' });
+  const [form, setForm] = useState({ 
+    nome: '', 
+    dataNascimento: '',
+    telefone: '', 
+    mensagem: '' 
+  });
   const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
@@ -48,7 +53,7 @@ function ModalContato({ isOpen, onClose, medico }) {
 
       if (res.ok) {
         alert('Mensagem enviada! O médico entrará em contato em breve.');
-        setForm({ nome: '', telefone: '', mensagem: '' });
+        setForm({ nome: '', dataNascimento: '', telefone: '', mensagem: '' });
         onClose();
       } else {
         alert('Erro ao enviar. Tente novamente.');
@@ -62,12 +67,14 @@ function ModalContato({ isOpen, onClose, medico }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all scale-100">
         
-        <div className="bg-[#34B755] p-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="relative w-12 h-12 rounded-full border-2 border-white overflow-hidden">
+        <div className="bg-[#00AE4E] p-6 flex items-center justify-between relative overflow-hidden">
+          <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-10 rounded-full"></div>
+          
+          <div className="flex items-center space-x-4 z-10">
+            <div className="relative w-14 h-14 rounded-full border-2 border-white/50 overflow-hidden shadow-sm">
                <Image 
                  src={medico.fotoUrl || '/images/menorzin.png'} 
                  alt={medico.nome}
@@ -75,51 +82,64 @@ function ModalContato({ isOpen, onClose, medico }) {
                  className="object-cover"
                />
             </div>
-            <div>
-              <p className="text-green-100 text-xs font-semibold uppercase tracking-wider">Falar com</p>
-              <h3 className="text-white font-bold text-lg leading-tight">{medico.nome}</h3>
+            <div className="text-white">
+              <p className="text-xs font-bold uppercase tracking-wider opacity-90">Enviar mensagem para</p>
+              <h3 className="font-bold text-xl">{medico.nome}</h3>
             </div>
           </div>
-          <button onClick={onClose} className="text-white hover:bg-green-700 rounded-full p-1 transition">
+          <button onClick={onClose} className="text-white/80 hover:text-white hover:bg-white/20 rounded-full p-2 transition z-10">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
-        <div className="p-6">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="p-8">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Seu Nome</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">Nome Completo</label>
               <input
                 type="text"
                 required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                placeholder="Como você se chama?"
+                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00AE4E] focus:ring-2 focus:ring-green-100 transition-all"
+                placeholder="Seu nome"
                 value={form.nome}
                 onChange={(e) => setForm({...form, nome: e.target.value})}
               />
             </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Seu WhatsApp</label>
-              <input
-                type="tel"
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                placeholder="(00) 00000-0000"
-                value={form.telefone}
-                onChange={(e) => setForm({...form, telefone: e.target.value})}
-              />
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Data de Nascimento</label>
+                <input
+                  type="date"
+                  required
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00AE4E] focus:ring-2 focus:ring-green-100 transition-all text-gray-600"
+                  value={form.dataNascimento}
+                  onChange={(e) => setForm({...form, dataNascimento: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Telefone</label>
+                <input
+                  type="tel"
+                  required
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00AE4E] focus:ring-2 focus:ring-green-100 transition-all"
+                  placeholder="(00) 00000-0000"
+                  value={form.telefone}
+                  onChange={(e) => setForm({...form, telefone: e.target.value})}
+                />
+              </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">Descreva seu problema</label>
               <textarea
                 required
                 rows="4"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
-                placeholder={`Olá, gostaria de saber mais sobre...`}
+                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00AE4E] focus:ring-2 focus:ring-green-100 transition-all resize-none"
+                placeholder="Conte brevemente o que você está sentindo..."
                 value={form.mensagem}
                 onChange={(e) => setForm({...form, mensagem: e.target.value})}
               />
@@ -128,14 +148,9 @@ function ModalContato({ isOpen, onClose, medico }) {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-[#34B755] hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-md transition-all transform active:scale-95 flex justify-center items-center"
+              className="w-full bg-[#00AE4E] hover:bg-[#008f39] text-white font-bold py-4 rounded-xl shadow-lg shadow-green-200 transition-all transform active:scale-95 mt-2 flex justify-center items-center text-lg"
             >
-              {loading ? (
-                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-              ) : 'Enviar Mensagem'}
+              {loading ? 'Enviando...' : 'Enviar Solicitação'}
             </button>
           </form>
         </div>
