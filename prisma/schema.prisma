@@ -29,11 +29,12 @@ model Medico {
 }
 
 model Mensagem {
-  id       Int      @id @default(autoincrement())
-  nome     String
-  telefone String
-  mensagem String
-  criadoEm DateTime @default(now())
+  id             Int      @id @default(autoincrement())
+  nome           String
+  telefone       String
+  mensagem       String
+  dataNascimento String   
+  criadoEm       DateTime @default(now())
 
   // Relação
   medicoId Int
