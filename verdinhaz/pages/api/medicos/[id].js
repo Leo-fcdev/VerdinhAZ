@@ -14,8 +14,12 @@ export default async function handler(req, res) {
         const medico = await prisma.medico.findUnique({
             where: { id: parseInt(id) },
             include: {
-                publicacoes: true
-            }
+                publicacoes: {
+                    orderBy: {
+                        criadoEm: 'desc'
+                    }
+                }
+            },
         });
 
         if (!medico) {
