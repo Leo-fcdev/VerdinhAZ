@@ -1,0 +1,142 @@
+.containerGeral {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  font-family: Arial, sans-serif;
+}
+
+.containerFormulario {
+  display: flex;
+  background-color: var(--verde-principal);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 40px;
+  width: 900px;
+  max-width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-height: 600px; 
+}
+
+.logoTopo {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  z-index: 2;
+}
+
+.logoTopo img {
+  width: 200px;
+}
+
+.formImagem {
+  flex: 1;
+  display: flex;
+  align-items: flex-end; 
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}
+
+.formImagem img {
+  height: 110%; 
+  width: auto;
+  object-fit: contain; 
+  margin-bottom: -40px; 
+  margin-left: -40px; 
+  transform: translateY(10px);
+}
+
+.formInputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+  z-index: 1;
+}
+
+.input {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.ajudaLink {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ajudaLink:hover {
+  text-decoration: underline;
+}
+
+.btnProximo {
+  background-color: var(--verde-escuro);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btnProximo:hover {
+  background-color: #104d2a;
+}
+
+.uploadContainer {
+  margin-bottom: 20px;
+}
+
+.customFileUpload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 15px 25px;
+  cursor: pointer;
+  color: #555;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 2px dashed #ccc;
+}
+
+.customFileUpload:hover {
+  background-color: #f9f9f9;
+  border-color: #999;
+}
+
+.customFileUpload input[type="file"] {
+  display: none;
+}
+
+.uploadIcon {
+  font-size: 1.3rem;
+}
+
+.fileSelected {
+  background-color: #e8f5e9;
+  border: 2px solid var(--verde-escuro);
+  color: var(--verde-escuro);
+}

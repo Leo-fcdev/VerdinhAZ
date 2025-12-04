@@ -1,0 +1,113 @@
+.container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px; /* Espaço no final da página */
+}
+
+/* --- Barra Verde do Topo --- */
+.topBar {
+  width: 100%;
+  background-color: #00AE4E; /* Verde para destacar a logo branca */
+  padding: 15px 0;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Conteúdo centralizado da barra */
+.headerContent {
+  width: 100%;
+  max-width: 1200px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.logo {
+  cursor: pointer;
+  width: 160px; /* Ajustei um pouco o tamanho para a barra */
+  height: auto;
+}
+
+/* --- Cartão Principal --- */
+.card {
+  background-color: #00AE4E;
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 30px;
+  padding: 60px;
+  box-shadow: 15px 15px 0px rgba(0,0,0,0.15);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px; /* Margem lateral em telas pequenas */
+}
+
+.title {
+  font-weight: 400;
+  font-size: 3rem;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  width: 100%;
+}
+
+.imageContainer {
+  flex: 1.2;
+}
+
+.illustration {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+}
+
+/* --- Texto --- */
+.textContainer {
+  flex: 1;
+  font-size: 1.1rem; /* Reduzido (era 1.25rem) */
+  line-height: 1.6;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.textContainer strong {
+  font-weight: 800;
+  color: #e8f5e9;
+  background-color: rgba(255,255,255,0.1);
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+  .contentWrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .card {
+    padding: 30px;
+  }
+}
