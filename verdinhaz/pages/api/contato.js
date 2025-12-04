@@ -6,17 +6,21 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: `Método ${req.method} não permitido` });
   }
 
+  // Agora incluindo dataNascimento
   const { nome, dataNascimento, telefone, mensagem, medicoId } = req.body;
 
-  if (!nome || !dataNascimento || !telefone || !mensagem || !medicoId) {
-    return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
+  if (!nome || !telefone || !mensagem || !medicoId) {
+    return res.status(400).json({ error: 'Preencha os campos obrigatórios.' });
   }
 
   try {
     const novaMensagem = await prisma.mensagem.create({
       data: {
         nome,
-        dataNascimento,
+        // Certifique-se que no schema este campo é String ou DateTime. 
+        // Se for DateTime, talvez precise de new Date(dataNascimento).
+        // Aqui assumo que você configurou como String no schema ou vai passar a string direta.
+        dataNascimento, 
         telefone,
         mensagem,
         medico: {

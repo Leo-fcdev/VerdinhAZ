@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 //  Importar o cliente Prisma
-
 import prisma from '../lib/prisma.js';
 
 // --- ÍCONES ---
@@ -24,11 +23,7 @@ function IconLocation() {
   );
 }
 
-// 
-
-//
 // Componente que recebe os dados direto do Banco de Dados 
-// 
 function DoctorCard({ medico }) {
   return (
     <div className="flex flex-col sm:flex-row items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
@@ -113,17 +108,18 @@ export default function BuscarMedicoPage({ medicos }) {
 }
 
 // FUNÇÃO DE BUSCA DE DADOS DO NEXT.JS 
-// 
 export async function getServerSideProps() {
   
   // Busca todos os médicos no banco de dados
-  //
   const medicos = await prisma.medico.findMany();
+
+  // Serializa os dados (converte datas para string) para evitar o erro do Next.js
+  const medicosSerializados = JSON.parse(JSON.stringify(medicos));
 
   // Retorna os médicos como 'props' para o componente da página
   return {
     props: {
-      medicos: medicos,
+      medicos: medicosSerializados,
     },
   };
 }

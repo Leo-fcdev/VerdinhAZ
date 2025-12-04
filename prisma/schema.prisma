@@ -1,39 +1,41 @@
-
 generator client {
   provider = "prisma-client-js"
   output   = "../verdinhaz/node_modules/.prisma/client"
-
 }
 
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
 }
- 
+
 model Medico {
-  id            Int @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   nome          String
-  email         String @unique
-  crm           String @unique
+  email         String   @unique
+  crm           String   @unique
   especialidade String
   localizacao   String
-  biografia     String 
-  fotoUrl       String
+  biografia     String?  @default("") // Tornado opcional para facilitar cadastro inicial
+  fotoUrl       String?  // Tornado opcional (o médico pode não ter foto no início)
   senha         String
+  
+  // Rastreamento de tempo
+  criadoEm      DateTime @default(now())
+  atualizadoEm  DateTime @updatedAt
 
-//Relação
-  mensagens Mensagem[]
+  // Relações
+  mensagens   Mensagem[]
   publicacoes Publicacao[]
 }
 
-model Mensagem{
-  id       Int @id @default(autoincrement())
+model Mensagem {
+  id       Int      @id @default(autoincrement())
   nome     String
   telefone String
-  mensagem String 
+  mensagem String
   criadoEm DateTime @default(now())
 
-//Relação
+  // Relação
   medicoId Int
   medico   Medico @relation(fields: [medicoId], references: [id])
 }
@@ -41,11 +43,12 @@ model Mensagem{
 model Publicacao {
   id        Int      @id @default(autoincrement())
   titulo    String
-  conteudo  String   
-  imagemUrl String?  
+  conteudo  String
+  imagemUrl String?
   criadoEm  DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
 
-  // Relação: Cada post pertence a um médico
-  medicoId  Int
-  medico    Medico   @relation(fields: [medicoId], references: [id])
+  // Relação
+  medicoId Int
+  medico   Medico @relation(fields: [medicoId], references: [id])
 }

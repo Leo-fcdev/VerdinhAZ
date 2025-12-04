@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import prisma from '../../lib/prisma';
 
+// ... (Ícones mantidos iguais: IconMap, IconCase, IconCalendar, IconChat) ...
 const IconMap = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -30,6 +31,7 @@ const IconChat = () => (
 );
 
 function ModalContato({ isOpen, onClose, medico }) {
+  // Estado incluindo dataNascimento
   const [form, setForm] = useState({ 
     nome: '', 
     dataNascimento: '',
@@ -56,7 +58,8 @@ function ModalContato({ isOpen, onClose, medico }) {
         setForm({ nome: '', dataNascimento: '', telefone: '', mensagem: '' });
         onClose();
       } else {
-        alert('Erro ao enviar. Tente novamente.');
+        const errorData = await res.json();
+        alert(`Erro ao enviar: ${errorData.error || 'Tente novamente.'}`);
       }
     } catch (error) {
       console.error(error);
@@ -70,6 +73,7 @@ function ModalContato({ isOpen, onClose, medico }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all scale-100">
         
+        {/* Cabeçalho do Modal */}
         <div className="bg-[#00AE4E] p-6 flex items-center justify-between relative overflow-hidden">
           <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-10 rounded-full"></div>
           
@@ -94,6 +98,7 @@ function ModalContato({ isOpen, onClose, medico }) {
           </button>
         </div>
 
+        {/* Corpo do Formulário */}
         <div className="p-8">
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             
@@ -134,7 +139,7 @@ function ModalContato({ isOpen, onClose, medico }) {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Descreva seu problema</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">Mensagem</label>
               <textarea
                 required
                 rows="4"
@@ -162,12 +167,12 @@ function ModalContato({ isOpen, onClose, medico }) {
 export default function PerfilPublico({ medico }) {
   const [showModal, setShowModal] = useState(false);
 
-  if (!medico) return <div className="text-center p-10">Médico não encontrado.</div>;
+  if (!medico) return <div className="text-center p-10 mt-10">Médico não encontrado.</div>;
 
   return (
     <div className="min-h-screen bg-white">
       <Head>
-        <title>{medico.nome} | Perfil</title>
+        <title>{medico.nome} | VerdinhAZ</title>
       </Head>
 
       <div className="relative h-64 w-full bg-[#1e8a4b] overflow-hidden flex items-center justify-center">
@@ -197,11 +202,11 @@ export default function PerfilPublico({ medico }) {
 
           <div className="flex-1 mt-4 md:mt-0 flex flex-col md:flex-row md:justify-between md:items-center w-full">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">{medico.nome.toUpperCase()}</h1>
+              <h1 className="text-3xl font-bold text-gray-800">{medico.nome}</h1>
               
               <div className="flex flex-wrap gap-4 mt-2 text-gray-600 text-sm">
                 <span className="flex items-center"><IconCase /> {medico.especialidade}</span>
-                <span className="flex items-center"><IconCalendar /> Membro desde 10/10/2025</span>
+                <span className="flex items-center"><IconCalendar /> CRM: {medico.crm}</span>
                 <span className="flex items-center"><IconMap /> {medico.localizacao}</span>
               </div>
             </div>
@@ -219,20 +224,14 @@ export default function PerfilPublico({ medico }) {
         <div className="border-b border-gray-200 mb-8">
           <nav className="flex space-x-8">
             <button className="border-b-2 border-[#34B755] pb-4 px-1 text-sm font-bold text-gray-900">
-              Publicações
-            </button>
-            <button className="border-b-2 border-transparent pb-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-              Mídia
-            </button>
-            <button className="border-b-2 border-transparent pb-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
               Sobre
             </button>
           </nav>
         </div>
 
-        <div className="py-10 text-center bg-gray-50 rounded-lg border border-dashed border-gray-300">
-            <p className="text-gray-500 font-medium">Nenhuma publicação recente.</p>
-            <p className="text-sm text-gray-400 mt-1">As novidades do especialista aparecerão aqui em breve.</p>
+        <div className="prose max-w-none text-gray-700">
+            <h3 className="text-xl font-bold mb-4">Biografia</h3>
+            <p className="whitespace-pre-wrap">{medico.biografia || "Sem biografia cadastrada."}</p>
         </div>
 
       </div>
